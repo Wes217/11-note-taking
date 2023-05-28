@@ -6,7 +6,7 @@ router.get('/',(req,res) => {
     // reads file of saved notes
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
-        //returnes saved notes
+        //returns saved notes
         res.json(JSON.parse(data));
     })
 })
