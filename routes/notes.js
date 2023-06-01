@@ -43,19 +43,19 @@ router.post('/',(req,res) => {
 router.delete('/:id', (req, res) => {
     console.log(`${req.method} request received for notes`);
 
-
+    // reads file of saved notes
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
         
         const parsedNotes = JSON.parse(data)
         const { id } = req.params;
-
+        //finds note with matching id
         const noteIndex = parsedNotes.findIndex(note => note.id == id)
-
+        // removes the note
         parsedNotes.splice(noteIndex, 1);
     
         const noteString = JSON.stringify(parsedNotes)
-
+        //save the new array of notes
         fs.writeFile('./db/db.json',
         noteString
         ,(err) => {
